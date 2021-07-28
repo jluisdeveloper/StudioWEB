@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import styles from './styles/Navigation.module.scss'
 import SocialBar from './social'
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const { navOpen } = props
+
   const [status, setStatus] = useState(false)
 
   const handleChangeMenu = () => {
@@ -11,9 +13,10 @@ const Navbar = () => {
 
   return (
     <header className={ styles.header_main }>
+    { console.log(navOpen) }
       <div className={ styles.header_container } >
-        <div className={ styles.navigation } style={{ height: "100vh" }} > {/* esto debe actualizarse cuando se baje el scroll y bajar de 100VH a 100 px */}
-          <div className={ styles.toggle_menu } style={{ height: "153px" }} onClick={()=> handleChangeMenu() } >  {/* esto debe actualizarse cuando se baje el scroll y bajar de 153 a 100 px */}
+        <div className={ styles.navigation } style={ navOpen ? { height: "100vh" } : { height: "100px" } } > 
+          <div className={ styles.toggle_menu } style={ navOpen ? { height: "153px" } : { height: "100px" } } onClick={()=> handleChangeMenu() } > 
             <div className={ styles.animation } >
               <div className={ styles.icon } >
                 <div className={ status ? styles.activeMenuLines : styles.lines } >
@@ -24,7 +27,7 @@ const Navbar = () => {
           <SocialBar/>
         </div>
 
-        <div className={ status ? styles.menu_out_active : styles.menu_out } style={{ height: "100vh" }} > { /* esto debe cambiar cuando hay scroll abajo scroll a 0px */ }
+        <div className={ status ? styles.menu_out_active : styles.menu_out } style={ navOpen ? { height: "100vh" } : { height: "0px" } } > 
           <div className={ status ? styles.menu_overlay_active : styles.menu_overlay } onClick={ ()=>handleChangeMenu() } > </div>
 
           <div className={ styles.menu_inner } >

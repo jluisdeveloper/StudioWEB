@@ -1,16 +1,38 @@
+import { useState, useEffect } from 'react'
+
 import styles from '../styles/Home.module.css'
 
 import SeoComponent from '../components/seo/SeoComponent'
 
 import Navbar from '../components/navigation/navbar'
 
+
 export default function Home() {
+  const [scrollDir, setScrollDir] = useState("scrolling down");
+  const [navOpen, setNavOpen] = useState(true);
+
+  const updateShowNav = () => {
+    setNavOpen(window.pageYOffset > 0 ? false : true);
+  }
+
+  useEffect(() => {
+    function watchScroll() {
+      window.addEventListener("scroll", updateShowNav);
+    }
+    watchScroll();
+    return () => {
+      window.removeEventListener("scroll", updateShowNav);
+    };
+  });
+  
   return (
     <div className="container-fluid">
       <SeoComponent/>
-
       <main className="row">
-        <Navbar />
+        <Navbar 
+          navOpen= { navOpen }
+        />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       </main>
 
       <footer className={styles.footer}>        
@@ -18,3 +40,37 @@ export default function Home() {
     </div>
   )
 }
+
+
+
+  // useEffect(() => {
+  //   const threshold = 0;
+  //   let lastScrollY = window.pageYOffset;
+  //   let ticking = false;
+
+  //   console.log(lastScrollY)
+
+  //   // const updateScrollDir = () => {
+  //   //   const scrollY = window.pageYOffset;
+
+  //   //   if (Math.abs(scrollY - lastScrollY) < threshold) {
+  //   //     ticking = false;
+  //   //     return;
+  //   //   }
+  //   //   setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
+  //   //   lastScrollY = scrollY > 0 ? scrollY : 0;
+  //   //   ticking = false;
+  //   // };
+
+  //   const onScroll = () => {
+  //     if (!ticking) {
+  //       window.requestAnimationFrame(updateScrollDir);
+  //       ticking = true;
+  //     }
+  //   };
+
+  //   window.addEventListener("scroll", onScroll);
+  //   console.log(scrollDir);
+
+  //   return () => window.removeEventListener("scroll", onScroll);
+  // }, [scrollDir]);
