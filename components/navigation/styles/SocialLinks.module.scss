@@ -1,0 +1,25 @@
+@import '../../../styles/_variables.scss';
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 170px;
+  left: 0;
+  bottom: 0;
+}
+
+.linksWrapper {
+  position: absolute;
+  left: 44%;
+  height: 150px;
+  a {
+    color: $white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all ease .3s;
+    svg {
+      margin-top: 10px;
+    }
+  }
+}

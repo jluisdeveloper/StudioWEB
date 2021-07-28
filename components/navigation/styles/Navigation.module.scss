@@ -1,0 +1,233 @@
+@import '../../../styles/_variables.scss';
+
+.header_main{    //  .pg-header
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  padding: 0;
+  transition: opacity .15s ease-in-out;
+}
+
+.header_container {       // pg-header--container
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: 63px;
+  padding-left: 213px;
+  padding-right: 120px;
+}
+
+.navigation {         // pg-navigation  j-menu--toggle
+  transform: none!important;
+  background: $blue;
+  display: block;
+  height: auto;
+  z-index: 101;
+  width: 130px;
+  max-width: 130px;
+  min-width: 130px;
+  transition: all .4s;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.toggle_menu {        // pg-toggle
+  z-index: 102;
+  padding: 0;
+  position: fixed;
+  width: 130px;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.animation {        // pg-toggle--animation
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $blue;
+}
+
+.icon {       //  pg-toggle--icon
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 15px;
+  transform: translate(-50%,-50%);
+}
+
+.lines {    //  pg-toggle--lines
+  position: relative;
+  transform: translateY(5px);
+  background: $white;
+  transition: all 0ms .3s;
+  left: 5px;
+  width: 14px;
+  height: 2px;
+  &:after, &:before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    background: $white;
+    width: 14px;
+    height: 2px;
+  }
+  &:after {
+    top: 5px;
+    transition: top .3s cubic-bezier(.23,1,.32,1) .3s,transform .3s cubic-bezier(.23,1,.32,1);
+  }
+  &:before {
+    bottom: 5px;
+    transition: bottom .3s cubic-bezier(.23,1,.32,1) .3s,transform .3s cubic-bezier(.23,1,.32,1);
+  }
+  display: block;
+  margin: 0 auto;
+}
+
+.activeMenuLines {
+  @extend .lines;
+  bottom: 0;
+  width: 16px;
+  transition: bottom .3s cubic-bezier(.23,1,.32,1),transform .3s cubic-bezier(.23,1,.32,1) .3s;
+  background: transparent;  
+  &:before {
+    bottom: 0;
+    transform: rotate(-45deg);
+    transition: bottom .3s cubic-bezier(.23,1,.32,1),transform .3s cubic-bezier(.23,1,.32,1) .3s;
+    width: 16px;
+  }
+  &:after {
+    top: 0;
+    transform: rotate(45deg);
+    transition: top .3s cubic-bezier(.23,1,.32,1),transform .3s cubic-bezier(.23,1,.32,1) .3s;
+    width: 16px;
+  }  
+}
+
+.menu_out {       // pg-navigation--slideout    j-menu--slide
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  background: $blue;
+  z-index: 99;
+  overflow: hidden;
+  height: 0;
+  transition: all .5s cubic-bezier(1,0,0,1) 0ms;
+  max-height: 100%;
+  min-width: 0;  
+}
+
+.menu_out_active {
+  @extend .menu_out;
+  width: calc(((100% - 130px) * 2/3) + 130px);
+  max-width: calc(((100% - 130px) * 2/3) + 130px);
+  min-width: 600px;
+  height: 100vh !important;
+}
+
+.menu_overlay {     //    pg-navigation--slideout-overlay
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .6s;
+  background: rgba(0,0,0,.5);
+}
+
+.menu_overlay_active {
+  @extend .menu_overlay;
+  opacity: 1;
+  visibility: visible;
+  cursor: pointer;
+}
+
+.menu_inner {       // pg-navigation--slideout-inner     // checar los media querys 
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: $blue;
+  padding: 0;
+  padding: 288px 198px 100px;
+  padding-right: 0;
+  counter-reset: menu;
+  min-width: 600px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.menu_item_container {      //  pg-navigation--menu--item-container
+  padding-top: 2px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.menu_item_container_active {
+  @extend .menu_item_container;
+  transition-delay: .65s;
+}
+
+.menu_item {        //pg-navigation--menu--item  menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-6158 current_page_item menu-item-6162
+  transition-delay: .05s;
+  transform: translate3d(0,calc(100% + 15px),0);
+  transition: all .5s;
+  counter-increment: menu;
+  color: $white;
+  text-decoration: none;
+  transition: all .5s;
+  display: inline-block;
+  position: relative;
+  padding: 0 15px;
+  padding-right: 30px;
+  // toke personal
+  font-family: $oswald;
+  font-size: 35px;
+  text-transform: uppercase;
+  font-weight: 800;
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top:25px;     // poner a 0 si se quiere el original y modificar el bottom a 10px
+    right: 0;
+    background: hsla(0,0%,100%,.3);
+    height: 7%;   // tamanho de la franja aumentar si se desea grosor
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform .4s cubic-bezier(1,0,0,1) 0ms;
+  }
+  &:hover {
+    color: $white;
+    text-decoration: none;
+    &:before { 
+      transform: scaleX(1);
+    }
+  }
+}
+
+.menu_item_active {
+  @extend .menu_item;
+  transition-delay: .55s;
+  transform: translateZ(0);
+}
