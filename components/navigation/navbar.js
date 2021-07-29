@@ -13,7 +13,6 @@ const Navbar = (props) => {
 
   return (
     <header className={ styles.header_main }>
-    { console.log(navOpen) }
       <div className={ styles.header_container } >
         <div className={ styles.navigation } style={ navOpen ? { height: "100vh" } : { height: "100px" } } > 
           <div className={ styles.toggle_menu } style={ navOpen ? { height: "153px" } : { height: "100px" } } onClick={()=> handleChangeMenu() } > 

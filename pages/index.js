@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import SeoComponent from '../components/seo/SeoComponent'
 
 import Navbar from '../components/navigation/navbar'
+import HomePage from '../components/home/index'
 
 
 export default function Home() {
@@ -24,15 +25,16 @@ export default function Home() {
       window.removeEventListener("scroll", updateShowNav);
     };
   });
-  
+
   return (
-    <div className="container-fluid">
+    <div className="">
       <SeoComponent/>
-      <main className="row">
-        <Navbar 
+      <Navbar 
           navOpen= { navOpen }
         />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <main className="">
+        <HomePage/>
+        
       </main>
 
       <footer className={styles.footer}>        
